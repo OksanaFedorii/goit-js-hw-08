@@ -13,25 +13,25 @@ body {
     line-height: 1.5;
 }
 
-.gallery-item{
-    list-style-type: none;
+.gallery-image{
     max-width: 360px;
 }
 
-.gallery{
+.gallery {
     margin-top: 24px;
     margin-bottom: 24px;
-    margin-left: 156px;
-    margin-right: 156px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
     padding: 0;
+    max-width: 1200px;
 }
 
-.gallery-image{
+.gallery-item {
+    list-style-type: none;
+    flex: 1 1 calc(33.33% - 20px);
     max-width: 360px;
 }
