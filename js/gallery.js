@@ -65,6 +65,7 @@ const images = [
 ];
 
 const gallery = document.querySelector(".gallery");
+const galleryItems = [];
 
 gallery.addEventListener("click", event => {
   event.preventDefault(); 
@@ -75,8 +76,8 @@ gallery.addEventListener("click", event => {
         <img src="${largeImageSrc}" width="1112" height="640">
       `);
       instance.show();
-  } 
-});
+  }
+}); 
 
 images.forEach(image => {
   const listItem = document.createElement("li");
@@ -85,15 +86,19 @@ images.forEach(image => {
   const link = document.createElement("a");
   link.classList.add("gallery-link");
   link.href = image.original;
-  link.setAttribute("target", "_blank"); 
+  link.setAttribute("target", "_blank");
 
   const img = document.createElement("img");
   img.classList.add("gallery-image");
   img.src = image.preview;
-  img.dataset.source = image.original; 
+  img.dataset.source = image.original;
   img.alt = image.description;
 
   link.appendChild(img);
   listItem.appendChild(link);
-  gallery.appendChild(listItem);
+  galleryItems.push(listItem);
+});
+
+galleryItems.forEach(item => {
+  gallery.appendChild(item);
 });
