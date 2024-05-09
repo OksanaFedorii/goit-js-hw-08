@@ -67,19 +67,8 @@ const images = [
 const gallery = document.querySelector(".gallery");
 const galleryItems = [];
 
-gallery.addEventListener("click", event => {
-  event.preventDefault(); 
-
-  if (event.target.classList.contains("gallery-image")) {
-      const largeImageSrc = event.target.dataset.source; 
-      const instance = basicLightbox.create(`
-        <img src="${largeImageSrc}" width="1112" height="640">
-      `);
-      instance.show();
-  }
-}); 
-
-images.forEach(image => {
+// 1. Створюю об'єкти і додаю їх в масив 
+const createdItems = images.map(image => {
   const listItem = document.createElement("li");
   listItem.classList.add("gallery-item");
 
@@ -96,9 +85,25 @@ images.forEach(image => {
 
   link.appendChild(img);
   listItem.appendChild(link);
-  galleryItems.push(listItem);
+  return listItem;
 });
 
+galleryItems.push(...createdItems);
+
+// 2. Додаю всі елементи до DOM використовуючи цикл для перебору вище створеного []
 galleryItems.forEach(item => {
   gallery.appendChild(item);
+});
+
+// 3. Додаю подію на галерею
+gallery.addEventListener("click", event => {
+  event.preventDefault(); 
+
+  if (event.target.classList.contains("gallery-image")) {
+      const largeImageSrc = event.target.dataset.source; 
+      const instance = basicLightbox.create(`
+        <img src="${largeImageSrc}" width="1112" height="640">
+      `);
+      instance.show();
+  }
 });
