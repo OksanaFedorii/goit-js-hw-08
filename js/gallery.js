@@ -65,9 +65,7 @@ const images = [
 ];
 
 const gallery = document.querySelector(".gallery");
-const galleryItems = [];
 
-// 1. Створюю об'єкти і додаю їх в масив 
 const createdItems = images.map(image => {
   const listItem = document.createElement("li");
   listItem.classList.add("gallery-item");
@@ -88,14 +86,8 @@ const createdItems = images.map(image => {
   return listItem;
 });
 
-galleryItems.push(...createdItems);
+gallery.append(...createdItems);
 
-// 2. Додаю всі елементи до DOM використовуючи цикл для перебору вище створеного []
-galleryItems.forEach(item => {
-  gallery.appendChild(item);
-});
-
-// 3. Додаю подію на галерею
 gallery.addEventListener("click", event => {
   event.preventDefault(); 
 
